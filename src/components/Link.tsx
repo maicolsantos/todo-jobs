@@ -1,11 +1,20 @@
 import { Space } from "antd";
-import { ExternalLink } from "lucide-react";
+import { CircleX, ExternalLink } from "lucide-react";
 
 type LinkProps = {
   url: string;
 };
 
 export const Link = ({ url }: LinkProps) => {
+  const isValidURL = () => {
+    try {
+      new URL(url);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+
   const handleLink = () => {
     const numberPattern = /\/(\d+)(?:$|\/)/;
     const match = url.match(numberPattern);
@@ -20,9 +29,17 @@ export const Link = ({ url }: LinkProps) => {
   return (
     <Space>
       <a>{handleLink()}</a>
-      <a href={url} target="_blank">
-        <ExternalLink size={16} className="icon-table" />
-      </a>
+      {isValidURL() && (
+        <a href={url} target="_blank">
+          <ExternalLink size={16} className="icon-table" />
+        </a>
+      )}
+      {!isValidURL() && (url || "")?.length > 0 && (
+        <Space className="link-invalid">
+          <CircleX size={16} className="icon-table" />
+          <span>Link inválido</span>
+        </Space>
+      )}
     </Space>
   );
 };

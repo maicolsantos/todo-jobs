@@ -12,12 +12,14 @@ const columns: TableColumnsType<Jobs> = [
     title: "ID",
     dataIndex: "id",
     key: "id",
+    width: "50px",
     sorter: (a, b) => a.id - b.id,
   },
   {
     title: "Work item (URL)",
     dataIndex: "link",
     key: "link",
+    width: "300px",
     render: (url, currentItem) => (
       <EditableCell dataKey="link" text={url} currentItem={currentItem}>
         <Link url={url} />
@@ -28,6 +30,7 @@ const columns: TableColumnsType<Jobs> = [
     title: "Evidências",
     dataIndex: "evidencies",
     key: "evidencies",
+    width: "150px",
     sorter: (a, b) => a.evidencies.length - b.evidencies.length,
     render: (evidencies, currentItem) => (
       <GroupButtons items={evidencies} currentItem={currentItem} />
@@ -37,12 +40,14 @@ const columns: TableColumnsType<Jobs> = [
     title: "Data criação",
     dataIndex: "createdAt",
     key: "createdAt",
+    width: "130px",
     sorter: (a, b) => sortDates(a.createdAt, b.createdAt),
   },
   {
     title: "Atualizado em",
     dataIndex: "updatedAt",
     key: "updatedAt",
+    width: "140px",
     sorter: (a, b) => sortDates(a.updatedAt, b.updatedAt),
   },
   {

@@ -12,5 +12,13 @@
 
 .edit-cell {
   display: block;
-  height: 24px;
+  min-height: 24px;
+}
+
+.link-invalid {
+  color: red;
+}
+
+.link-invalid span {
+  font-size: 0.8rem;
 }
