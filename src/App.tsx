@@ -8,14 +8,15 @@ import {
   theme,
 } from "antd";
 import { Copy, Moon, Plus, SunMoon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Table } from "./components/Table";
 import { useClipboardStatus } from "./store/useClipboardStatus";
 import { useJobs } from "./store/useJobs";
+import { useTheme } from "./store/useTheme";
 import { handleCopy } from "./utils/clipboard";
 
 export const App = () => {
-  const [isDark, setIsDark] = useState(true);
+  const { isDark, setIsDark } = useTheme();
   const [messageApi, contextHolder] = message.useMessage();
   const { jobs, setJobs } = useJobs();
   const { isCopied, setIsCopied } = useClipboardStatus();
@@ -78,7 +79,7 @@ export const App = () => {
                 </Button>
               )}
               <Button
-                onClick={() => setIsDark((prev) => !prev)}
+                onClick={() => setIsDark(!isDark)}
                 icon={isDark ? <SunMoon size={16} /> : <Moon size={16} />}
               />
             </Space>
