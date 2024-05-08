@@ -1,6 +1,7 @@
 import { Table as AntdTable, TableColumnsType } from "antd";
 import { Jobs } from "../@types/jobs";
 import { useJobs } from "../store/useJobs";
+import { sortDates } from "../utils/sortDates";
 import { DeleteCell } from "./DeleteCell";
 import { EditableCell } from "./EditableCell";
 import { GroupButtons } from "./GroupButtons";
@@ -36,13 +37,13 @@ const columns: TableColumnsType<Jobs> = [
     title: "Data criação",
     dataIndex: "createdAt",
     key: "createdAt",
-    sorter: (a, b) => a.createdAt.length - b.createdAt.length,
+    sorter: (a, b) => sortDates(a.createdAt, b.createdAt),
   },
   {
     title: "Atualizado em",
     dataIndex: "updatedAt",
     key: "updatedAt",
-    sorter: (a, b) => a.updatedAt.length - b.updatedAt.length,
+    sorter: (a, b) => sortDates(a.updatedAt, b.updatedAt),
   },
   {
     title: "Informação",

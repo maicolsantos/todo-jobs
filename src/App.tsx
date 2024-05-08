@@ -62,21 +62,6 @@ export const App = () => {
           extra={
             <Space>
               <Button
-                onClick={() => setIsDark((prev) => !prev)}
-                icon={
-                  isDark ? (
-                    <SunMoon
-                      size={16}
-                      style={{ position: "relative", top: 3 }}
-                    />
-                  ) : (
-                    <Moon size={16} style={{ position: "relative", top: 3 }} />
-                  )
-                }
-              >
-                {isDark ? "Light" : "Dark"}
-              </Button>
-              <Button
                 onClick={handleAddNewJob}
                 icon={
                   <Plus size={16} style={{ position: "relative", top: 3 }} />
@@ -90,6 +75,10 @@ export const App = () => {
                   Copiar
                 </Space>
               </Button>
+              <Button
+                onClick={() => setIsDark((prev) => !prev)}
+                icon={isDark ? <SunMoon size={16} /> : <Moon size={16} />}
+              />
             </Space>
           }
         >
