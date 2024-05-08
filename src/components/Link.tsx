@@ -1,3 +1,6 @@
+import { Space } from "antd";
+import { ExternalLink } from "lucide-react";
+
 type LinkProps = {
   url: string;
 };
@@ -14,5 +17,12 @@ export const Link = ({ url }: LinkProps) => {
     return url;
   };
 
-  return <a href={url}>{handleLink()}</a>;
+  return (
+    <Space>
+      <a>{handleLink()}</a>
+      <a href={url} target="_blank">
+        <ExternalLink size={16} className="icon-table" />
+      </a>
+    </Space>
+  );
 };
