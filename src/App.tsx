@@ -1,35 +1,73 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-
+export const App = () => {
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h3 class="title is-3"># 08/05/2024</h3>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>
+              <abbr title="Position">Pos</abbr>
+            </th>
+            <th>Team</th>
+            <th>
+              <abbr title="Played">Pld</abbr>
+            </th>
+            <th>
+              <abbr title="Won">W</abbr>
+            </th>
+            <th>
+              <abbr title="Drawn">D</abbr>
+            </th>
+            <th>
+              <abbr title="Lost">L</abbr>
+            </th>
+            <th>
+              <abbr title="Goals for">GF</abbr>
+            </th>
+            <th>
+              <abbr title="Goals against">GA</abbr>
+            </th>
+            <th>
+              <abbr title="Goal difference">GD</abbr>
+            </th>
+            <th>
+              <abbr title="Points">Pts</abbr>
+            </th>
+            <th>Qualification or relegation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>1</th>
+            <td>
+              <a
+                href="https://en.wikipedia.org/wiki/Leicester_City_F.C."
+                title="Leicester City F.C."
+              >
+                Leicester City
+              </a>
+              <strong>(C)</strong>
+            </td>
+            <td>38</td>
+            <td>23</td>
+            <td>12</td>
+            <td>3</td>
+            <td>68</td>
+            <td>36</td>
+            <td>+32</td>
+            <td>81</td>
+            <td>
+              Qualification for the
+              <a
+                href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage"
+                title="2016–17 UEFA Champions League"
+              >
+                Champions League group stage
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </>
-  )
-}
-
-export default App
+  );
+};
