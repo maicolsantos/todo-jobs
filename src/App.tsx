@@ -1,12 +1,21 @@
-import { Button, Card, Space, message } from "antd";
-import { Copy, Plus } from "lucide-react";
-import { useEffect } from "react";
+import {
+  Button,
+  Card,
+  ConfigProvider,
+  Layout,
+  Space,
+  message,
+  theme,
+} from "antd";
+import { Copy, Moon, Plus, SunMoon } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Table } from "./components/Table";
 import { useClipboardStatus } from "./store/useClipboardStatus";
 import { useJobs } from "./store/useJobs";
 import { handleCopy } from "./utils/clipboard";
 
 export const App = () => {
+  const [isDark, setIsDark] = useState(true);
   const [messageApi, contextHolder] = message.useMessage();
   const { jobs, setJobs } = useJobs();
   const { isCopied, setIsCopied } = useClipboardStatus();
@@ -41,24 +50,52 @@ export const App = () => {
   }, [isCopied]);
 
   return (
-    <>
+    <ConfigProvider
+      theme={{
+        algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
+      }}
+    >
       {contextHolder}
-      <div style={{ padding: "24px" }}>
+      <Layout style={{ minHeight: "100vh", padding: 24 }}>
         <Card
-          title="TODO JOBS"
+          title="Task List"
           extra={
             <Space>
-              <Button onClick={handleAddNewJob} icon={<Plus size={16} />} />
               <Button
-                onClick={() => handleCopy(jobs)}
-                icon={<Copy size={16} />}
-              />
+                onClick={() => setIsDark((prev) => !prev)}
+                icon={
+                  isDark ? (
+                    <SunMoon
+                      size={16}
+                      style={{ position: "relative", top: 3 }}
+                    />
+                  ) : (
+                    <Moon size={16} style={{ position: "relative", top: 3 }} />
+                  )
+                }
+              >
+                {isDark ? "Light" : "Dark"}
+              </Button>
+              <Button
+                onClick={handleAddNewJob}
+                icon={
+                  <Plus size={16} style={{ position: "relative", top: 3 }} />
+                }
+              >
+                Item
+              </Button>
+              <Button onClick={() => handleCopy(jobs)}>
+                <Space align="center">
+                  <Copy size={16} style={{ position: "relative", top: 3 }} />
+                  Copiar
+                </Space>
+              </Button>
             </Space>
           }
         >
           <Table />
         </Card>
-      </div>
-    </>
+      </Layout>
+    </ConfigProvider>
   );
 };

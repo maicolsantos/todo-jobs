@@ -21,7 +21,7 @@ export const useJobs = create<Store>()(
           if (job.key === jobs.key) {
             return {
               ...jobs,
-              updatedAt: new Date().toLocaleDateString("pt-BR", {
+              updatedAt: new Date().toLocaleDateString("pt-PT", {
                 day: "2-digit",
                 month: "2-digit",
                 year: "numeric",
