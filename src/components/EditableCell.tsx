@@ -1,4 +1,4 @@
-import { Input, Typography } from "antd";
+import { Input } from "antd";
 import { useState } from "react";
 import { Jobs } from "../@types/jobs";
 import { useJobs } from "../store/useJobs";
@@ -9,8 +9,6 @@ type EditableCellProps = {
   currentItem: Jobs;
   children?: React.ReactNode;
 };
-
-const { Text } = Typography;
 
 export const EditableCell = ({
   dataKey,
