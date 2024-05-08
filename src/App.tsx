@@ -57,23 +57,21 @@ export const App = () => {
       }}
     >
       {contextHolder}
-      <Layout style={{ minHeight: "100vh", padding: 24 }}>
+      <Layout className="layout">
         <Card
           title="Task List"
           extra={
             <Space>
               <Button
                 onClick={handleAddNewJob}
-                icon={
-                  <Plus size={16} style={{ position: "relative", top: 3 }} />
-                }
+                icon={<Plus size={16} className="icon-table" />}
               >
                 Item
               </Button>
               {jobs.length > 0 && (
                 <Button onClick={() => handleCopy(jobs)}>
                   <Space align="center">
-                    <Copy size={16} style={{ position: "relative", top: 3 }} />
+                    <Copy size={16} className="icon-table" />
                     Copiar
                   </Space>
                 </Button>

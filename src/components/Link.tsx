@@ -3,5 +3,16 @@ type LinkProps = {
 };
 
 export const Link = ({ url }: LinkProps) => {
-  return <a href={url}>{url}</a>;
+  const handleLink = () => {
+    const numberPattern = /\/(\d+)(?:$|\/)/;
+    const match = url.match(numberPattern);
+
+    if (match) {
+      return parseInt(match[1], 10);
+    }
+
+    return url;
+  };
+
+  return <a href={url}>{handleLink()}</a>;
 };

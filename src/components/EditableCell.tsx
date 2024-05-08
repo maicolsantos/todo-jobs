@@ -44,10 +44,7 @@ export const EditableCell = ({
           onChange={(e) => handleEditInfo(e.target.value)}
         />
       ) : (
-        <div
-          style={{ display: "block", height: 24 }}
-          onClick={() => setEditItem(true)}
-        >
+        <div className="edit-cell" onClick={() => setEditItem(true)}>
           {children ? children : text}
         </div>
       )}

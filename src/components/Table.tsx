@@ -15,7 +15,7 @@ const columns: TableColumnsType<Jobs> = [
     sorter: (a, b) => a.id - b.id,
   },
   {
-    title: "URL",
+    title: "Work item (URL)",
     dataIndex: "link",
     key: "link",
     render: (url, currentItem) => (

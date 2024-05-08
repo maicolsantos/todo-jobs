@@ -1,1 +1,16 @@
 @import url(antd/dist/reset.css);
+
+.layout {
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.icon-table {
+  position: relative;
+  top: 3px;
+}
+
+.edit-cell {
+  display: block;
+  height: 24px;
+}
