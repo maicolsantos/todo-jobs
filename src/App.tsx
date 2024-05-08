@@ -69,12 +69,14 @@ export const App = () => {
               >
                 Item
               </Button>
-              <Button onClick={() => handleCopy(jobs)}>
-                <Space align="center">
-                  <Copy size={16} style={{ position: "relative", top: 3 }} />
-                  Copiar
-                </Space>
-              </Button>
+              {jobs.length > 0 && (
+                <Button onClick={() => handleCopy(jobs)}>
+                  <Space align="center">
+                    <Copy size={16} style={{ position: "relative", top: 3 }} />
+                    Copiar
+                  </Space>
+                </Button>
+              )}
               <Button
                 onClick={() => setIsDark((prev) => !prev)}
                 icon={isDark ? <SunMoon size={16} /> : <Moon size={16} />}
