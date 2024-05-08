@@ -17,8 +17,6 @@ export const handleCopy = (jobs: Jobs[]) => {
     return acc;
   }, {});
 
-  console.log(groupedData);
-
   // Step 2: Format each group
   const formattedData = Object.entries(groupedData).map(
     ([date, items]: any) => {
