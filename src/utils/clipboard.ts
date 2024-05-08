@@ -6,18 +6,26 @@ export const handleCopy = (jobs: Jobs[]) => {
   // Step 1: Group data by createdAt date
   const groupedData = jobs.reduce((acc: any, item) => {
     const date = item.createdAt;
+
+    if (!item.link) return acc;
+
     if (!acc[date]) {
       acc[date] = [];
     }
     acc[date].push(item);
+
     return acc;
   }, {});
+
+  console.log(groupedData);
 
   // Step 2: Format each group
   const formattedData = Object.entries(groupedData).map(
     ([date, items]: any) => {
       // Format entries for the current date group
       const entries = items.map((item: any) => {
+        if (!item.link) return null;
+
         const evidences = item.evidencies.join(", ");
         const info = item.info ? ` ${item.info}` : "";
         const updatedAt = ` (Atualizado em: ${item.updatedAt})`;
