@@ -23,7 +23,7 @@ export const handleCopy = (jobs: Jobs[]) => {
         const updatedAt = ` (Atualizado em: ${item.updatedAt})`;
 
         // Combine components into a single string
-        return `${item.link} Evidências ("${evidences}")${info}${updatedAt}`;
+        return `${item.link} Evidências: ("${evidences}")${info}${updatedAt}`;
       });
 
       // Combine date and entries into a single string

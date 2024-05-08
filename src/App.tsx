@@ -1,24 +1,33 @@
-import { Button, Card, message } from "antd";
-import { Copy } from "lucide-react";
-import { useEffect, useState } from "react";
-import { Table, dataSource } from "./components/Table";
+import { Button, Card, Space, message } from "antd";
+import { Copy, Plus } from "lucide-react";
+import { useEffect } from "react";
+import { Table } from "./components/Table";
 import { useClipboardStatus } from "./store/useClipboardStatus";
 import { useJobs } from "./store/useJobs";
 import { handleCopy } from "./utils/clipboard";
 
 export const App = () => {
   const [messageApi, contextHolder] = message.useMessage();
-  const [hasUpdated, setHasUpdated] = useState(false);
-  const { jobs, setAllJobs } = useJobs();
+  const { jobs, setJobs } = useJobs();
   const { isCopied, setIsCopied } = useClipboardStatus();
 
-  useEffect(() => {
-    if (hasUpdated) {
-      console.log(1);
-      setAllJobs(dataSource);
-      setHasUpdated(false);
-    }
-  }, [hasUpdated]);
+  const handleAddNewJob = () => {
+    const createdAt = new Date().toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+
+    setJobs({
+      key: jobs.length + 1,
+      id: jobs.length + 1,
+      link: "",
+      evidencies: [],
+      info: "",
+      createdAt,
+      updatedAt: createdAt,
+    });
+  };
 
   useEffect(() => {
     if (isCopied) {
@@ -38,12 +47,13 @@ export const App = () => {
         <Card
           title="TODO JOBS"
           extra={
-            <Button
-              type="link"
-              ghost
-              onClick={() => handleCopy(jobs)}
-              icon={<Copy size={16} />}
-            />
+            <Space>
+              <Button onClick={handleAddNewJob} icon={<Plus size={16} />} />
+              <Button
+                onClick={() => handleCopy(jobs)}
+                icon={<Copy size={16} />}
+              />
+            </Space>
           }
         >
           <Table />

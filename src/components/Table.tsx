@@ -6,45 +6,6 @@ import { EditableCell } from "./EditableCell";
 import { GroupButtons } from "./GroupButtons";
 import { Link } from "./Link";
 
-export const dataSource = [
-  {
-    key: 1,
-    id: 1,
-    link: "/",
-    evidencies: ["localhost", "TS", "PP"],
-    info: "Closed",
-    updatedAt: "12/05/2024",
-    createdAt: "05/05/2024",
-  },
-  {
-    key: 2,
-    id: 2,
-    link: "/",
-    evidencies: ["localhost", "TS", "PP"],
-    info: "",
-    updatedAt: "12/05/2024",
-    createdAt: "05/05/2024",
-  },
-  {
-    key: 3,
-    id: 3,
-    link: "/",
-    evidencies: ["localhost", "TS", "PP"],
-    info: "",
-    updatedAt: "12/05/2024",
-    createdAt: "12/05/2024",
-  },
-  {
-    key: 4,
-    id: 4,
-    link: "/",
-    evidencies: ["localhost", "TS", "PP"],
-    info: "",
-    updatedAt: "12/05/2024",
-    createdAt: "12/05/2024",
-  },
-];
-
 const columns: TableColumnsType<Jobs> = [
   {
     title: "ID",
