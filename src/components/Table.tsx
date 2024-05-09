@@ -102,7 +102,7 @@ export const Table = () => {
         showSorterTooltip={false}
         pagination={false}
         dataSource={handleDataSource()}
-        columns={columns}
+        columns={columns as never}
       />
     </>
   );
