@@ -36,13 +36,13 @@ export const Upload = forwardRef<ForwardRefProps>(
 
     const handleSubmit = () => {
       const data: Jobs[] = JSON.parse(uploadValue || "[]");
-      const lastId = jobs.length > 0 ? jobs[jobs.length - 1].id : 0;
+      const lastId = jobs.length > 0 ? jobs[jobs.length - 1].id + 1 : 1;
 
       if (validateUpload(data)) {
-        const dataFormatted = data.map((item) => ({
+        const dataFormatted = data.map((item, index = 1) => ({
           ...item,
-          id: lastId + 1,
-          key: lastId + 1,
+          id: lastId + index,
+          key: lastId + index,
         }));
 
         setAllJobs([...jobs, ...dataFormatted]);
