@@ -2,7 +2,7 @@
 import { Jobs } from "../@types/jobs";
 import { useClipboardStatus } from "../store/useClipboardStatus";
 
-export const handleCopy = (jobs: Jobs[]) => {
+export const handleCopyText = (jobs: Jobs[]) => {
   // Step 1: Group data by createdAt date
   const groupedData = jobs.reduce((acc: any, item) => {
     const date = item.createdAt;
@@ -49,4 +49,43 @@ export const handleCopy = (jobs: Jobs[]) => {
     .catch((err) => {
       console.error("Failed to copy data: ", err);
     });
+};
+
+export const handleCopyJSON = (jobs: Jobs[]) => {
+  // Convert the object to a JSON string with indentation for readability.
+  const jsonString = JSON.stringify(
+    jobs.map((item) => ({
+      link: item.link,
+      evidencies: item.evidencies,
+      info: item.info,
+      createdAt: item.createdAt,
+      updatedAt: item.updatedAt,
+    })),
+    null,
+    2
+  );
+
+  // Create a temporary textarea element.
+  const textarea = document.createElement("textarea");
+  textarea.style.position = "fixed";
+  textarea.style.top = "-1000px";
+  textarea.style.left = "-1000px";
+  textarea.style.zIndex = "-1000";
+  // Set the value of the textarea to the JSON string.
+  textarea.value = jsonString;
+  // Append the textarea to the document body.
+  document.body.appendChild(textarea);
+  // Select the textarea's content.
+  textarea.select();
+
+  try {
+    // Copy the content of the textarea to the clipboard.
+    document.execCommand("copy");
+    useClipboardStatus.getState().setIsCopied(true);
+  } catch (err) {
+    console.error("Failed to copy: ", err);
+  } finally {
+    // Remove the textarea from the document.
+    document.body.removeChild(textarea);
+  }
 };
