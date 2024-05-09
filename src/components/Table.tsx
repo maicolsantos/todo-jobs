@@ -6,15 +6,9 @@ import { DeleteCell } from "./DeleteCell";
 import { EditableCell } from "./EditableCell";
 import { GroupButtons } from "./GroupButtons";
 import { Link } from "./Link";
+import { Status } from "./Status";
 
 const columns: TableColumnsType<Jobs> = [
-  {
-    title: "ID",
-    dataIndex: "id",
-    key: "id",
-    width: "50px",
-    sorter: (a, b) => a.id - b.id,
-  },
   {
     title: "Work item (URL)",
     dataIndex: "link",
@@ -37,10 +31,19 @@ const columns: TableColumnsType<Jobs> = [
     ),
   },
   {
+    title: "Status",
+    dataIndex: "status",
+    key: "status",
+    width: "150px",
+    sorter: (a, b) => (a.status || "")?.length - (b.status || "")?.length,
+    render: (_, currentItem) => <Status currentItem={currentItem} />,
+  },
+  {
     title: "Data criação",
     dataIndex: "createdAt",
     key: "createdAt",
     width: "130px",
+    align: "end",
     sorter: (a, b) => sortDates(a.createdAt, b.createdAt),
   },
   {
@@ -48,6 +51,7 @@ const columns: TableColumnsType<Jobs> = [
     dataIndex: "updatedAt",
     key: "updatedAt",
     width: "140px",
+    align: "end",
     sorter: (a, b) => sortDates(a.updatedAt, b.updatedAt),
   },
   {
@@ -71,14 +75,34 @@ const columns: TableColumnsType<Jobs> = [
 export const Table = () => {
   const { jobs } = useJobs();
 
+  const handleStatus = (evidencies: string[]) => {
+    switch ((evidencies || [])?.length) {
+      case 0:
+        return "Active";
+      case 1:
+      case 2:
+        return "Ready2Test";
+      default:
+        return "Resolved";
+    }
+  };
+
+  const handleDataSource = () => {
+    return jobs.map((job) => ({
+      ...job,
+      status: handleStatus(job.evidencies),
+    }));
+  };
+
   return (
     <>
       <AntdTable
+        bordered
         size="small"
-        dataSource={jobs}
-        columns={columns}
+        showSorterTooltip={false}
         pagination={false}
-        showSorterTooltip={{ target: "sorter-icon" }}
+        dataSource={handleDataSource()}
+        columns={columns}
       />
     </>
   );

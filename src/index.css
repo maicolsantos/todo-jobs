@@ -22,3 +22,8 @@
 .link-invalid span {
   font-size: 0.8rem;
 }
+
+.table-responsive {
+  overflow-x: auto;
+  max-width: 100%;
+}

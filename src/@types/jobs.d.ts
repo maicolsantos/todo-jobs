@@ -3,6 +3,7 @@ export interface Jobs {
   id: number;
   link: string;
   evidencies: string[];
+  status?: "Active" | "Ready2Test" | "Resolved";
   info: string;
   updatedAt: string;
   createdAt: string;

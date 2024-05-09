@@ -30,7 +30,9 @@ export const App = () => {
       {contextHolder}
       <Layout className="layout">
         <Card title="Task List" extra={<ExtraCard />}>
-          <Table />
+          <div className="table-responsive">
+            <Table />
+          </div>
         </Card>
       </Layout>
     </ConfigProvider>
