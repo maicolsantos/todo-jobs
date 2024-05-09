@@ -16,11 +16,11 @@ export const Link = ({ url }: LinkProps) => {
   };
 
   const handleLink = () => {
-    const numberPattern = /\/(\d+)(?:$|\/)/;
-    const match = url.match(numberPattern);
+    const regex = /\/(\d+)$/;
+    const match = url.match(regex);
 
     if (match) {
-      return parseInt(match[1], 10);
+      return match[1];
     }
 
     return url;
