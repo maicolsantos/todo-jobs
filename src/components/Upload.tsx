@@ -20,18 +20,28 @@ export const Upload = forwardRef<ForwardRefProps>(
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   (_, _ref) => {
     const [open, setOpen] = useState(false);
-    // const [isJSONValid, setIsJSONValid] = useState(false);
+    const [isJSONValid, setIsJSONValid] = useState<boolean | null>(null);
     const [uploadValue, setUploadValue] = useState("");
     const { jobs, setAllJobs } = useJobs();
 
     const showDrawer = () => {
-      console.log(123);
-
       setOpen(true);
     };
 
     const onClose = () => {
       setOpen(false);
+    };
+
+    const handleValidateJSON = (value: string) => {
+      try {
+        const data: Jobs[] = JSON.parse(value || "[]");
+
+        if (validateUpload(data)) {
+          setIsJSONValid(true);
+        }
+      } catch (error) {
+        setIsJSONValid(false);
+      }
     };
 
     const handleSubmit = () => {
@@ -70,7 +80,11 @@ export const Upload = forwardRef<ForwardRefProps>(
         extra={
           <Space>
             <Button onClick={onClose}>Cancelar</Button>
-            <Button type="primary" onClick={handleSubmit}>
+            <Button
+              type="primary"
+              disabled={!uploadValue || !isJSONValid}
+              onClick={handleSubmit}
+            >
               <Space align="center">
                 <Save size={16} className="icon-table" />
                 Enviar
@@ -102,12 +116,16 @@ export const Upload = forwardRef<ForwardRefProps>(
         <TextArea
           showCount
           rows={9}
-          // status={isJSONValid ? "" : "error"}
+          {...(!isJSONValid && uploadValue && { status: "error" })}
           onChange={(e) => {
             setUploadValue(e.target.value);
-            // setIsJSONValid(validateUpload(JSON.parse(e.target.value)));
+            handleValidateJSON(e.target.value);
           }}
         />
+        {isJSONValid && uploadValue && <Text type="success">JSON válido</Text>}
+        {!isJSONValid && uploadValue && (
+          <Text type="danger">JSON inválido</Text>
+        )}
       </AntdDrawer>
     );
   }
