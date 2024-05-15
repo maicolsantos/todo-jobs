@@ -9,17 +9,33 @@ import { Upload, drawerRef } from "./Upload";
 export const ExtraCard = () => {
   const { isDark, setIsDark } = useTheme();
   const { jobs, setJobs, selectedRows } = useJobs();
+  const jobsSelected = jobs.filter((job) => selectedRows.includes(job.key));
 
   const items: MenuProps["items"] = [
     {
       key: "1",
-      label: "Copiar texto",
+      label: "Texto",
       onClick: () => handleCopyText(jobs),
     },
     {
-      key: "2",
-      label: "Copiar JSON",
+      key: "3",
+      label: "JSON",
       onClick: () => handleCopyJSON(jobs),
+    },
+    {
+      type: "divider",
+    },
+    {
+      key: "2",
+      label: "Textos (selecionados)",
+      onClick: () => handleCopyText(jobsSelected),
+      disabled: jobsSelected.length === 0,
+    },
+    {
+      key: "4",
+      label: "JSON (selecionados)",
+      onClick: () => handleCopyJSON(jobsSelected),
+      disabled: jobsSelected.length === 0,
     },
   ];
 
@@ -58,14 +74,16 @@ export const ExtraCard = () => {
           Upload
         </Button>
         {jobs.length > 0 && (
-          <Dropdown arrow menu={{ items }}>
-            <Button>
-              <Space align="center">
-                <Copy size={16} className="icon-table" />
-                Copiar
-              </Space>
-            </Button>
-          </Dropdown>
+          <Dropdown.Button
+            arrow
+            menu={{ items }}
+            onClick={() => handleCopyText(jobs)}
+          >
+            <Space align="center">
+              <Copy size={16} className="icon-table" />
+              Copiar
+            </Space>
+          </Dropdown.Button>
         )}
         <Button
           onClick={() => setIsDark(!isDark)}
