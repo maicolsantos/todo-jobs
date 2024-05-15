@@ -73,7 +73,7 @@ const columns: TableColumnsType<Jobs> = [
 ];
 
 export const Table = () => {
-  const { jobs } = useJobs();
+  const { jobs, selectedRows, setSelectedRows } = useJobs();
 
   const handleStatus = (evidencies: string[]) => {
     switch ((evidencies || [])?.length) {
@@ -101,6 +101,12 @@ export const Table = () => {
         size="small"
         showSorterTooltip={false}
         pagination={false}
+        rowSelection={{
+          type: "checkbox",
+          selectedRowKeys: selectedRows,
+          onChange: (keys) => setSelectedRows(keys as number[]),
+          ...selectedRows,
+        }}
         dataSource={handleDataSource()}
         columns={columns as never}
       />

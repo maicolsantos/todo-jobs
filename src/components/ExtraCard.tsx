@@ -3,11 +3,12 @@ import { Copy, Moon, Plus, SunMoon, Upload as UploadIcon } from "lucide-react";
 import { useJobs } from "../store/useJobs";
 import { useTheme } from "../store/useTheme";
 import { handleCopyJSON, handleCopyText } from "../utils/clipboard";
+import { DeleteRows } from "./DeleteRows";
 import { Upload, drawerRef } from "./Upload";
 
 export const ExtraCard = () => {
   const { isDark, setIsDark } = useTheme();
-  const { jobs, setJobs } = useJobs();
+  const { jobs, setJobs, selectedRows } = useJobs();
 
   const items: MenuProps["items"] = [
     {
@@ -43,6 +44,7 @@ export const ExtraCard = () => {
   return (
     <>
       <Space wrap>
+        {selectedRows.length > 0 && <DeleteRows />}
         <Button
           onClick={handleAddNewJob}
           icon={<Plus size={16} className="icon-table" />}

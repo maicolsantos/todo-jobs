@@ -4,16 +4,20 @@ import { Jobs } from "../@types/jobs";
 
 type Store = {
   jobs: Jobs[];
+  selectedRows: number[];
   setJobs: (jobs: Jobs) => void;
   setAllJobs: (jobs: Jobs[]) => void;
   updateJobs: (jobs: Jobs) => void;
   deleteJobs: (key: number) => void;
+  setSelectedRows: (keys: number[]) => void;
+  deleteMultipleJobs: () => void;
 };
 
 export const useJobs = create<Store>()(
   persist(
     (set, get) => ({
       jobs: [],
+      selectedRows: [],
       setJobs: (jobs) => set({ jobs: [...get().jobs, jobs] }),
       setAllJobs: (jobs) => set({ jobs }),
       updateJobs: (jobs) => {
@@ -36,6 +40,14 @@ export const useJobs = create<Store>()(
       },
       deleteJobs: (key) =>
         set({ jobs: get().jobs.filter((job) => job.key !== key) }),
+      setSelectedRows: (key) => set({ selectedRows: key }),
+      deleteMultipleJobs: () =>
+        set({
+          jobs: get().jobs.filter(
+            (job) => !get().selectedRows.includes(job.key)
+          ),
+          selectedRows: [],
+        }),
     }),
     {
       name: "TDJOBS",
