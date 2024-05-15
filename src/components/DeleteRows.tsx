@@ -15,7 +15,11 @@ export const DeleteRows = () => {
         onConfirm={deleteMultipleJobs}
         okButtonProps={{ danger: true }}
       >
-        <Button danger icon={<Trash2 size={16} className="icon-table" />}>
+        <Button
+          danger
+          type="primary"
+          icon={<Trash2 size={16} className="icon-table" />}
+        >
           Deletar selecionados
         </Button>
       </Popconfirm>
