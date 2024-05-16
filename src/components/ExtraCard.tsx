@@ -3,6 +3,7 @@ import { Copy, Moon, Plus, SunMoon, Upload as UploadIcon } from "lucide-react";
 import { useJobs } from "../store/useJobs";
 import { useTheme } from "../store/useTheme";
 import { handleCopyJSON, handleCopyText } from "../utils/clipboard";
+import { generateUniqueId } from "../utils/generateUniqueId";
 import { DeleteRows } from "./DeleteRows";
 import { Upload, drawerRef } from "./Upload";
 
@@ -40,6 +41,7 @@ export const ExtraCard = () => {
   ];
 
   const handleAddNewJob = () => {
+    const id = generateUniqueId()
     const createdAt = new Date().toLocaleDateString("pt-BR", {
       day: "2-digit",
       month: "2-digit",
@@ -47,8 +49,8 @@ export const ExtraCard = () => {
     });
 
     setJobs({
-      key: jobs.length + 1,
-      id: jobs.length + 1,
+      key: id,
+      id,
       link: "",
       evidencies: [],
       info: "",

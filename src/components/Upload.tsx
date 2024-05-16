@@ -4,6 +4,7 @@ import { createRef, forwardRef, useImperativeHandle, useState } from "react";
 import { Jobs } from "../@types/jobs";
 import { useJobs } from "../store/useJobs";
 import { validateUpload } from "../utils/validateUpload";
+import { generateUniqueId } from "../utils/generateUniqueId";
 
 interface ForwardRefProps {
   showDrawer: () => void;
@@ -46,13 +47,13 @@ export const Upload = forwardRef<ForwardRefProps>(
 
     const handleSubmit = () => {
       const data: Jobs[] = JSON.parse(uploadValue || "[]");
-      const lastId = jobs.length > 0 ? jobs[jobs.length - 1].id + 1 : 1;
+      const id = generateUniqueId()
 
       if (validateUpload(data)) {
         const dataFormatted = data.map((item, index = 1) => ({
           ...item,
-          id: lastId + index,
-          key: lastId + index,
+          id: id + index,
+          key: id + index,
         }));
 
         setAllJobs([...jobs, ...dataFormatted]);
