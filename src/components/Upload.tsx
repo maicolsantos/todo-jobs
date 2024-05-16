@@ -50,10 +50,10 @@ export const Upload = forwardRef<ForwardRefProps>(
       const id = generateUniqueId()
 
       if (validateUpload(data)) {
-        const dataFormatted = data.map((item) => ({
+        const dataFormatted = data.map((item, index = 1) => ({
           ...item,
-          id,
-          key: id,
+          id: id + index,
+          key: id + index,
         }));
 
         setAllJobs([...jobs, ...dataFormatted]);
