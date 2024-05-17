@@ -48,6 +48,7 @@ export const App = () => {
       {contextHolder}
       <Affix offsetTop={0}>
         <Header
+          className="header"
           style={{
             background: isDark ? colorBgDarkContainer : colorBgContainer,
           }}
