@@ -10,6 +10,11 @@
   top: 3px;
 }
 
+.icon-header {
+  position: relative;
+  top: 7px;
+}
+
 .edit-cell {
   display: block;
   min-height: 24px;
@@ -26,4 +31,9 @@
 .table-responsive {
   overflow-x: auto;
   max-width: 100%;
+}
+
+.dark-mode-button {
+  position: relative;
+  top: 3px;
 }

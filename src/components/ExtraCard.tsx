@@ -41,7 +41,7 @@ export const ExtraCard = () => {
   ];
 
   const handleAddNewJob = () => {
-    const id = generateUniqueId()
+    const id = generateUniqueId();
     const createdAt = new Date().toLocaleDateString("pt-BR", {
       day: "2-digit",
       month: "2-digit",
@@ -88,6 +88,7 @@ export const ExtraCard = () => {
           </Dropdown.Button>
         )}
         <Button
+          className="dark-mode-button"
           onClick={() => setIsDark(!isDark)}
           icon={isDark ? <SunMoon size={16} /> : <Moon size={16} />}
         />
