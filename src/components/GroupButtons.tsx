@@ -8,7 +8,7 @@ type GroupButtonsProps = {
   currentItem: Jobs;
 };
 
-const EVIDENCIES = ["localhost", "TS", "PP"];
+const EVIDENCIES = ["localhost", "Staging", "Prod"];
 
 export const GroupButtons = ({ items, currentItem }: GroupButtonsProps) => {
   const [itemsSelected, setItemsSelected] = useState<string[]>(items);
