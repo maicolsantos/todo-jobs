@@ -7,7 +7,7 @@ export const handleCopyText = (jobs: Jobs[]) => {
   const groupedData = jobs.reduce((acc: any, item) => {
     const date = item.createdAt;
 
-    if (!item.link) return acc;
+    //if (!item.link) return acc;
 
     if (!acc[date]) {
       acc[date] = [];
