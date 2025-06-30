@@ -22,7 +22,7 @@ export const handleCopyText = (jobs: Jobs[]) => {
     ([date, items]: any) => {
       // Format entries for the current date group
       const entries = items.map((item: any) => {
-        if (!item.link) return null;
+        if (!item.link) return 'Sem Link';
 
         const evidences = item.evidencies.join(", ");
         const info = item.info ? ` ${item.info}` : "";
