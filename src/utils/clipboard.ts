@@ -22,14 +22,14 @@ export const handleCopyText = (jobs: Jobs[]) => {
     ([date, items]: any) => {
       // Format entries for the current date group
       const entries = items.map((item: any) => {
-        if (!item.link) return 'Sem Link';
+        // if (!item.link) return null;
 
         const evidences = item.evidencies.join(", ");
         const info = item.info ? ` ${item.info}` : "";
         const updatedAt = ` (Atualizado em: ${item.updatedAt})`;
 
         // Combine components into a single string
-        return `- ${item.link} - ("${evidences}")${info}${updatedAt}`;
+        return `- ${item.link || 'Sem Link'} - ("${evidences}")${info}${updatedAt}`;
       });
 
       // Combine date and entries into a single string
