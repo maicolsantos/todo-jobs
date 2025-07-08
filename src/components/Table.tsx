@@ -8,6 +8,9 @@ import { GroupButtons } from "./GroupButtons";
 import { Link } from "./Link";
 import { Status } from "./Status";
 
+const EVIDENCIES = ["Develop", "Staging", "Prod"];
+const PROJECTS = ["CMS", "SITE"];
+
 const columns: TableColumnsType<Jobs> = [
   {
     title: "Work item (URL)",
@@ -27,7 +30,7 @@ const columns: TableColumnsType<Jobs> = [
     width: "150px",
     sorter: (a, b) => a.evidencies.length - b.evidencies.length,
     render: (evidencies, currentItem) => (
-      <GroupButtons items={evidencies} currentItem={currentItem} />
+      <GroupButtons type="evidencies" items={evidencies} options={EVIDENCIES} currentItem={currentItem} />
     ),
   },
   {
@@ -53,6 +56,16 @@ const columns: TableColumnsType<Jobs> = [
     width: "140px",
     align: "end",
     sorter: (a, b) => sortDates(a.updatedAt, b.updatedAt),
+  },
+  {
+    title: "Projetos",
+    dataIndex: "projects",
+    key: "projects",
+    width: "100px",
+    sorter: (a, b) => a.projects.length - b.projects.length,
+    render: (projects, currentItem) => (
+      <GroupButtons type="projects" items={projects} options={PROJECTS} currentItem={currentItem} />
+    ),
   },
   {
     title: "Informação",

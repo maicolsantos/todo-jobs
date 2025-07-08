@@ -25,11 +25,12 @@ export const handleCopyText = (jobs: Jobs[]) => {
         // if (!item.link) return null;
 
         const evidences = item.evidencies.join(", ");
+        const projects = (item.projects || [])?.length ? ` [${item.projects.join(", ")}]` : "";
         const info = item.info ? ` ${item.info}` : "";
         const updatedAt = ` (Atualizado em: ${item.updatedAt})`;
 
         // Combine components into a single string
-        return `- ${item.link || 'Sem Link'} - ("${evidences}")${info}${updatedAt}`;
+        return `- ${item.link || 'Sem Link'} - ("${evidences}")${projects}${info}${updatedAt}`;
       });
 
       // Combine date and entries into a single string

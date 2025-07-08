@@ -5,12 +5,12 @@ import { useJobs } from "../store/useJobs";
 
 type GroupButtonsProps = {
   items: string[];
+  options: string[];
   currentItem: Jobs;
+  type: "evidencies" | "projects";
 };
 
-const EVIDENCIES = ["Develop", "Staging", "Prod"];
-
-export const GroupButtons = ({ items, currentItem }: GroupButtonsProps) => {
+export const GroupButtons = ({ items, options, type, currentItem }: GroupButtonsProps) => {
   const [itemsSelected, setItemsSelected] = useState<string[]>(items);
   const { updateJobs } = useJobs();
 
@@ -18,13 +18,13 @@ export const GroupButtons = ({ items, currentItem }: GroupButtonsProps) => {
     if (itemsSelected.includes(item)) {
       updateJobs({
         ...currentItem,
-        evidencies: itemsSelected.filter((i) => i !== item),
+        [type]: itemsSelected.filter((i) => i !== item),
       });
       setItemsSelected(itemsSelected.filter((i) => i !== item));
     } else {
       updateJobs({
         ...currentItem,
-        evidencies: [...itemsSelected, item],
+        [type]: [...itemsSelected, item],
       });
       setItemsSelected([...itemsSelected, item]);
     }
@@ -32,7 +32,7 @@ export const GroupButtons = ({ items, currentItem }: GroupButtonsProps) => {
 
   return (
     <Space.Compact size="small">
-      {EVIDENCIES?.map((item: string) => (
+      {options?.map((item: string) => (
         <Button
           key={item}
           className="uppercase"

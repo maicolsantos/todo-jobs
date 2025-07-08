@@ -53,6 +53,7 @@ export const ExtraCard = () => {
       id,
       link: "",
       evidencies: [],
+      projects: [],
       info: "",
       createdAt,
       updatedAt: createdAt,
