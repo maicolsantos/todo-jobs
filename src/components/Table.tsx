@@ -9,7 +9,7 @@ import { Link } from "./Link";
 import { Status } from "./Status";
 
 const EVIDENCIES = ["Develop", "Staging", "Prod"];
-const PROJECTS = ["CMS", "SITE"];
+const PROJECTS = ["CMS", "SITE", "STUDIO"];
 
 const columns: TableColumnsType<Jobs> = [
   {
